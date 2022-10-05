@@ -129,30 +129,31 @@ const App = () => {
   const [score, setScore] = useState(0);
 
   const changeChar = () => {
-    
+    setScore(characters);
   };
 
   const scoreHandler = (e) => {
-   
+    e.preventDefault();
+    setCurrChar(...score, currChar);
   };
 
   useEffect(() => {
-   
-  });
+    changeChar();
+  }, [score]);
   return (
     <div id="main">
       <div className="container">
         <h1 className="header">Guess the Character</h1>
         <div className="ques-area">
-          <div className="score" id='score'>Score: {score}</div>
+          <div className="score" id="score">
+            Score: {score}
+          </div>
           <h3>The character has the following abilities:</h3>
           <h4>Role: {currChar.role}</h4>
           {currChar.abilities.join()}
           <div className="options">
             {currChar.options.map((option) => (
-              <button   onClick={scoreHandler}>
-                {option.name}
-              </button>
+              <button onClick={scoreHandler}>{option.name}</button>
             ))}
           </div>
         </div>
